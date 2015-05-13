@@ -1,4 +1,4 @@
-// webuntistoics project main.go
+// schulcal project main.go
 package main
 
 import (
