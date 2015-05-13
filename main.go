@@ -36,18 +36,34 @@ func main() {
 		log.Fatal(err)
 	}
 
-	w, w2, w3 := getDates()
+	var c = make(chan string)
+	wd, wd2, wd3 := getDates()
 	//	getics(jar, "2015-05-21")
-	var wo = stripend(getics(jar, w))
-	_ = "breakpoint"
+	//wd == woche datum
+	go getics(jar, wd, c)
+	go getics(jar, wd2, c)
+	go getics(jar, wd3, c)
+	// wc == woche content
+	var wc = <-c
+	var wc2 = <-c
+	var wc3 = <-c
 
-	var wo2 = stripbeginning(stripend(getics(jar, w2)))
-	var wo3 = stripbeginning(getics(jar, w3))
-	_ = "breakpoint"
+	var bcal = "BEGIN:VCALENDAR\r\nPRODID:-//Ben Fortuna//iCal4j 1.0//EN\r\nVERSION:2.0\r\nCALSCALE:GREGORIAN\r\n"
 
-	var resul = wo + wo2 + wo3
-	fmt.Print(resul)
+	var ecal = "\r\nEND:VCALENDAR"
+	var res = bcal + wc + wc2 + wc3 + ecal
+	fmt.Print(res)
+	/*
+		//var wo = stripend(getics(jar, w))
+		_ = "breakpoint"
 
+		var wo2 = stripbeginning(stripend(getics(jar, w2)))
+		var wo3 = stripbeginning(getics(jar, w3))
+		_ = "breakpoint"
+
+		var resul = wo + wo2 + wo3
+		fmt.Print(resul)
+	*/
 }
 
 func stripall(input string) string {
@@ -96,7 +112,7 @@ func getDates() (string, string, string) {
 	//7 Tage == 168 Stunden
 	//14 Tage == 336 Stunden
 }
-func getics(sharedjar http.CookieJar, datum string) string {
+func getics(sharedjar http.CookieJar, datum string, c chan string) {
 	client := http.Client{Jar: sharedjar}
 	url := "https://poly.webuntis.com/WebUntis/Ical.do?elemType=1&elemId=569&rpt_sd=" + datum
 	resp, err := client.Get(url)
@@ -105,7 +121,7 @@ func getics(sharedjar http.CookieJar, datum string) string {
 	if err != nil {
 		log.Fatal(err)
 	}
-	return string(data)
+	c <- stripall(string(data))
 }
 func sum(a, b int) int {
 	return a + b
