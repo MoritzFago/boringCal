@@ -108,13 +108,14 @@ func getDates() (string, string, string) {
 	t := now.Format(layout)
 	t2 := now.AddDate(0, 0, 7).Format(layout)
 	t3 := now.AddDate(0, 0, 14).Format(layout)
+	fmt.Print(t2)
 	return t, t2, t3
 	//7 Tage == 168 Stunden
 	//14 Tage == 336 Stunden
 }
 func getics(sharedjar http.CookieJar, datum string, c chan string) {
 	client := http.Client{Jar: sharedjar}
-	url := "https://poly.webuntis.com/WebUntis/Ical.do?elemType=1&elemId=569&rpt_sd=" + datum
+	url := "https://poly.webuntis.com/WebUntis/Ical.do?elemType=1&elemId=796&rpt_sd=" + datum
 	resp, err := client.Get(url)
 	data, err := ioutil.ReadAll(resp.Body)
 	resp.Body.Close()
