@@ -108,7 +108,7 @@ func getDates() (string, string, string) {
 	t := now.Format(layout)
 	t2 := now.AddDate(0, 0, 7).Format(layout)
 	t3 := now.AddDate(0, 0, 14).Format(layout)
-	fmt.Print(t2)
+	//fmt.Print(t2)
 	return t, t2, t3
 	//7 Tage == 168 Stunden
 	//14 Tage == 336 Stunden
