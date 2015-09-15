@@ -12,10 +12,6 @@ import (
 	"time"
 
 	"code.google.com/p/go.net/publicsuffix"
-
-	//	"gopkg.in/xmlpath.v2"
-
-	//	"github.com/soh335/ical"
 )
 
 func main() {
