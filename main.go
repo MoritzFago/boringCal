@@ -56,6 +56,10 @@ func main() {
 
 	var ecal = "\r\nEND:VCALENDAR"
 	var res = bcal + wc + wc2 + wc3 + ecal
+
+	fmt.Print("content-type: text/plain; charset=utf-8\r\n")
+	fmt.Print("\r\n")
+
 	fmt.Print(res)
 	/*
 		//var wo = stripend(getics(jar, w))
@@ -127,8 +131,4 @@ func getics(sharedjar http.CookieJar, datum string, c chan string) {
 		log.Fatal(err)
 	}
 	c <- stripall(string(data))
-}
-
-func sum(a, b int) int {
-	return a + b
 }
