@@ -1,3 +1,3 @@
-# Schulcal  
+# boringCal  
 
-Schulcal lädt und "verbindet" mehrere ICS Dateien von einem WebUntis Schulkalender.
+boringCal lädt und "verbindet" mehrere ICS Dateien von einem WebUntis Schulkalender.
