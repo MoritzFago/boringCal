@@ -1,4 +1,4 @@
-// schulcal project main.go
+// BoringCal project main.go
 package main
 
 import (
@@ -12,6 +12,10 @@ import (
 	"time"
 
 	"code.google.com/p/go.net/publicsuffix"
+
+	//	"gopkg.in/xmlpath.v2"
+
+	//	"github.com/soh335/ical"
 )
 
 func main() {
@@ -124,6 +128,7 @@ func getics(sharedjar http.CookieJar, datum string, c chan string) {
 	}
 	c <- stripall(string(data))
 }
+
 func sum(a, b int) int {
 	return a + b
 }
