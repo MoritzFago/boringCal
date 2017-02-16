@@ -11,7 +11,7 @@ import (
 	"regexp"
 	"time"
 
-	"code.google.com/p/go.net/publicsuffix"
+	"golang.org/x/net/publicsuffix"
 )
 
 func main() {
@@ -119,7 +119,7 @@ func getDates() (string, string, string) {
 }
 func getics(sharedjar http.CookieJar, datum string, c chan string) {
 	client := http.Client{Jar: sharedjar}
-	url := "https://poly.webuntis.com/WebUntis/Ical.do?elemType=1&elemId=796&rpt_sd=" + datum
+	url := "https://poly.webuntis.com/WebUntis/Ical.do?elemType=1&elemId=1017&rpt_sd=" + datum
 	resp, err := client.Get(url)
 	data, err := ioutil.ReadAll(resp.Body)
 	resp.Body.Close()
